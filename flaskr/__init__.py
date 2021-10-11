@@ -1,6 +1,6 @@
 import os
 from flask import Flask, jsonify
-# from flask_cors import CORS
+from flask_cors import CORS
 import psycopg2
 
 db_user = os.environ.get('CLOUD_SQL_USERNAME')
@@ -13,6 +13,13 @@ app = Flask(__name__)
 
 def create_app(test_config=None):
     app = Flask(__name__)
+    CORS(app)
+
+    @app.after_request
+    def after_request(response):
+        response.headers.add('Access-Control-Allow-Headers', 'Content-Type, Authorization')
+        response.headers.add('Access-Control-Allow-Headers', 'GET, POST, PATCH, DELETE, OPTION')
+        return response
 
     @app.route('/')
     def init():
@@ -32,7 +39,11 @@ def create_app(test_config=None):
         cnx.commit()
         cnx.close()
 
-        return str(current_time)
+        # return str(current_time)
+        return jsonify({
+        		'success': True,
+        		'time': str(current_time)
+        	})
 
     return app
 
