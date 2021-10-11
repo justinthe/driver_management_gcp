@@ -5,16 +5,10 @@ import psycopg2
 from models import *
 import sys
 
-# db_user = os.environ.get('CLOUD_SQL_USERNAME')
-# db_password = os.environ.get('CLOUD_SQL_PASSWORD')
-# db_name = os.environ.get('CLOUD_SQL_DATABASE_NAME')
-# db_connection_name = os.environ.get('CLOUD_SQL_CONNECTION_NAME')
-# 
-# app = Flask(__name__)
- 
 
 def create_app(test_config=None):
     app = Flask(__name__)
+    setup_db(app)
     CORS(app)
 
     @app.after_request

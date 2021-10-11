@@ -11,7 +11,8 @@ db_user = os.environ.get('CLOUD_SQL_USERNAME')
 db_password = os.environ.get('CLOUD_SQL_PASSWORD')
 db_name = os.environ.get('CLOUD_SQL_DATABASE_NAME')
 db_connection_name = os.environ.get('CLOUD_SQL_CONNECTION_NAME')
-db_path = "postgresql+pg8000://{}:{}@/{}?unix_sock=cloudsql/{}/.s.PGSQL.5432".format(db_user, db_password, db_name, db_connection_name)
+# db_path = "postgresql+pg8000://{}:{}@/{}?unix_sock=cloudsql/{}/.s.PGSQL.5432".format(db_user, db_password, db_name, db_connection_name)
+db_path = "postgresql://{}:{}@/{}?host=/cloudsql/{}".format(db_user, db_password, db_name, db_connection_name)
 
 db = SQLAlchemy()
 
