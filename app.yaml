@@ -1,0 +1,7 @@
+runtime: python39
+
+env_variables:
+    CLOUD_SQL_USERNAME: postgres
+    CLOUD_SQL_PASSWORD: password
+    CLOUD_SQL_DATABASE_NAME: driver-management
+    CLOUD_SQL_CONNECTION_NAME: driver-management-328507:asia-southeast2:driver
